@@ -16,14 +16,30 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<string>('home');
 
   useEffect(() => {
-    // Simple routing based on pathname
-    const path = window.location.pathname;
-    if (path === '/ai-search') setCurrentPage('ai-search');
-    else if (path === '/expert-qa') setCurrentPage('expert-qa');
-    else if (path === '/creator-hub') setCurrentPage('creator-hub');
-    else if (path === '/coaching') setCurrentPage('coaching');
-    else if (path === '/pages-overview') setCurrentPage('pages-overview');
-    else setCurrentPage('home');
+    // Function to handle route changes
+    const handleRouteChange = () => {
+      const path = window.location.pathname;
+      if (path === '/ai-search') setCurrentPage('ai-search');
+      else if (path === '/expert-qa') setCurrentPage('expert-qa');
+      else if (path === '/creator-hub') setCurrentPage('creator-hub');
+      else if (path === '/coaching') setCurrentPage('coaching');
+      else if (path === '/pages-overview') setCurrentPage('pages-overview');
+      else setCurrentPage('home');
+    };
+
+    // Initial route check
+    handleRouteChange();
+
+    // Listen for custom navigation events
+    window.addEventListener('navigateApp', handleRouteChange);
+    
+    // Listen for browser back/forward buttons
+    window.addEventListener('popstate', handleRouteChange);
+
+    return () => {
+      window.removeEventListener('navigateApp', handleRouteChange);
+      window.removeEventListener('popstate', handleRouteChange);
+    };
   }, []);
 
   // Render detail pages

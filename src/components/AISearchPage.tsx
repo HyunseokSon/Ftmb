@@ -228,7 +228,7 @@ export function AISearchPage() {
           {/* Additional Actions */}
           <div className="mt-8 flex gap-4 justify-center">
             <button 
-              onClick={() => window.location.href = '/expert-qa'}
+              onClick={() => navigateTo('/expert-qa')}
               className="px-6 py-3 bg-[#1a1a24] border-2 border-[#b968ff] rounded-lg hover:bg-[#b968ff]/10 transition-all"
             >
               Can't Find It? Ask Experts

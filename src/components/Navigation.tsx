@@ -1,11 +1,16 @@
 import { Search, MessageSquare, Video, FileText, Home } from 'lucide-react';
 
+// Helper function to navigate without page reload
+const navigateTo = (path: string) => {
+  window.history.pushState({}, '', path);
+  window.dispatchEvent(new Event('navigateApp'));
+};
+
 export function Navigation() {
   const currentPath = window.location.pathname;
 
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
-    { path: '/pages-overview', label: '📋 All Pages', icon: null, color: '#FFD700' },
     { path: '/ai-search', label: 'AI Search', icon: Search, color: '#00d9ff' },
     { path: '/expert-qa', label: 'Expert Q&A', icon: MessageSquare, color: '#b968ff' },
     { path: '/creator-hub', label: 'Creator Hub', icon: Video, color: '#ff006e' },
@@ -17,14 +22,17 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <button 
+            onClick={() => navigateTo('/')}
+            className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+          >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#00d9ff] to-[#b968ff] flex items-center justify-center">
               <span className="text-sm">🎮</span>
             </div>
             <span className="text-lg bg-gradient-to-r from-[#00d9ff] to-[#b968ff] bg-clip-text text-transparent">
               Gaming Platform
             </span>
-          </div>
+          </button>
 
           {/* Navigation Links */}
           <div className="flex items-center gap-2">
@@ -32,10 +40,10 @@ export function Navigation() {
               const Icon = item.icon;
               const isActive = currentPath === item.path;
               return (
-                <a
+                <button
                   key={item.path}
-                  href={item.path}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-sm ${
+                  onClick={() => navigateTo(item.path)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-sm cursor-pointer ${
                     isActive
                       ? 'bg-white/10 border border-white/20'
                       : 'hover:bg-white/5'
@@ -51,7 +59,7 @@ export function Navigation() {
                     <span style={item.color ? { color: item.color } : {}}></span>
                   )}
                   <span className="text-sm">{item.label}</span>
-                </a>
+                </button>
               );
             })}
           </div>

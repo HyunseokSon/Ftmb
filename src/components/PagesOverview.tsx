@@ -1,5 +1,11 @@
 import { Search, MessageSquare, Video, FileText, ArrowRight } from 'lucide-react';
 
+// Helper function to navigate without page reload
+const navigateTo = (path: string) => {
+  window.history.pushState({}, '', path);
+  window.dispatchEvent(new Event('navigateApp'));
+};
+
 export function PagesOverview() {
   const pages = [
     {
@@ -57,12 +63,12 @@ export function PagesOverview() {
           <p className="text-xl text-gray-400 mb-8">
             Click any card below to navigate to the full functional page
           </p>
-          <a 
-            href="/"
+          <button
+            onClick={() => navigateTo('/')}
             className="inline-block px-6 py-3 bg-[#1a1a24] border border-white/10 rounded-lg hover:border-[#00d9ff] transition-colors"
           >
             ← Back to Home
-          </a>
+          </button>
         </div>
 
         {/* Pages Grid */}
@@ -70,10 +76,10 @@ export function PagesOverview() {
           {pages.map((page) => {
             const Icon = page.icon;
             return (
-              <a
+              <button
                 key={page.id}
-                href={page.path}
-                className="block bg-[#1a1a24] rounded-2xl border border-white/10 p-8 hover:border-opacity-100 transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,0,0,0.5)] group"
+                onClick={() => navigateTo(page.path)}
+                className="block w-full text-left bg-[#1a1a24] rounded-2xl border border-white/10 p-8 hover:border-opacity-100 transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,0,0,0.5)] group cursor-pointer"
                 style={{ borderColor: `${page.color}40` }}
               >
                 {/* Header */}
@@ -120,7 +126,7 @@ export function PagesOverview() {
                     Open {page.title} →
                   </span>
                 </div>
-              </a>
+              </button>
             );
           })}
         </div>
@@ -132,14 +138,14 @@ export function PagesOverview() {
             {pages.map((page) => {
               const Icon = page.icon;
               return (
-                <a
+                <button
                   key={page.id}
-                  href={page.path}
-                  className="flex items-center gap-2 px-6 py-3 bg-[#0a0a0f] border border-white/10 rounded-lg hover:border-white/30 transition-colors"
+                  onClick={() => navigateTo(page.path)}
+                  className="flex items-center gap-2 px-6 py-3 bg-[#0a0a0f] border border-white/10 rounded-lg hover:border-white/30 transition-colors cursor-pointer"
                 >
                   <Icon className="w-5 h-5" style={{ color: page.color }} />
                   <span>{page.title}</span>
-                </a>
+                </button>
               );
             })}
           </div>

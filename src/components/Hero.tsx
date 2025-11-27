@@ -50,7 +50,7 @@ export function Hero() {
               className="relative px-8 py-4 bg-gradient-to-r from-[#00d9ff] to-[#b968ff] rounded-lg overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.5)] hover:scale-105"
               onMouseEnter={() => setActiveTooltip('search')}
               onMouseLeave={() => setActiveTooltip(null)}
-              onClick={() => window.location.href = '/ai-search'}
+              onClick={() => navigateTo('/ai-search')}
             >
               <span className="relative z-10 flex items-center gap-2">
                 <Search className="w-5 h-5" />
@@ -71,7 +71,7 @@ export function Hero() {
               className="px-8 py-4 bg-[#1a1a24] border-2 border-[#b968ff] rounded-lg transition-all hover:bg-[#b968ff]/10 hover:shadow-[0_0_30px_rgba(185,104,255,0.3)] hover:scale-105"
               onMouseEnter={() => setActiveTooltip('experts')}
               onMouseLeave={() => setActiveTooltip(null)}
-              onClick={() => window.location.href = '/expert-qa'}
+              onClick={() => navigateTo('/expert-qa')}
             >
               <span className="flex items-center gap-2">
                 <MessageSquare className="w-5 h-5" />
@@ -113,7 +113,7 @@ export function Hero() {
           {/* AI Search Feature */}
           <button 
             className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-[#1a1a24] transition-all group cursor-pointer"
-            onClick={() => window.location.href = '/ai-search'}
+            onClick={() => navigateTo('/ai-search')}
           >
             <div className="w-12 h-12 rounded-full bg-[#00d9ff]/20 flex items-center justify-center border border-[#00d9ff] group-hover:scale-110 transition-transform">
               <Search className="w-6 h-6 text-[#00d9ff]" />
@@ -125,7 +125,7 @@ export function Hero() {
           {/* Expert Q&A Feature */}
           <button 
             className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-[#1a1a24] transition-all group cursor-pointer"
-            onClick={() => window.location.href = '/expert-qa'}
+            onClick={() => navigateTo('/expert-qa')}
           >
             <div className="w-12 h-12 rounded-full bg-[#b968ff]/20 flex items-center justify-center border border-[#b968ff] group-hover:scale-110 transition-transform">
               <MessageSquare className="w-6 h-6 text-[#b968ff]" />
@@ -149,7 +149,7 @@ export function Hero() {
           {/* Coaching Feature */}
           <button 
             className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-[#1a1a24] transition-all group cursor-pointer"
-            onClick={() => window.location.href = '/coaching'}
+            onClick={() => navigateTo('/coaching')}
           >
             <div className="w-12 h-12 rounded-full bg-[#00d9ff]/20 flex items-center justify-center border border-[#00d9ff] group-hover:scale-110 transition-transform">
               <FileText className="w-6 h-6 text-[#00d9ff]" />
