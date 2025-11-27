@@ -44,6 +44,11 @@ export default function App() {
     };
   }, []);
 
+  // Scroll to top whenever page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [currentPage]);
+
   // Render detail pages
   if (currentPage === 'ai-search') return <AISearchPage />;
   if (currentPage === 'expert-qa') return <ExpertQAPage />;
