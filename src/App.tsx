@@ -8,6 +8,7 @@ import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
 import { AISearchPage } from './components/AISearchPage';
 import { ExpertQAPage } from './components/ExpertQAPage';
+import { QuestionDetailPage } from './components/QuestionDetailPage';
 import { CreatorHubPage } from './components/CreatorHubPage';
 import { CoachingPage } from './components/CoachingPage';
 import { PagesOverview } from './components/PagesOverview';
@@ -21,6 +22,7 @@ export default function App() {
       const path = window.location.pathname;
       if (path === '/ai-search') setCurrentPage('ai-search');
       else if (path === '/expert-qa') setCurrentPage('expert-qa');
+      else if (path === '/question-detail') setCurrentPage('question-detail');
       else if (path === '/creator-hub') setCurrentPage('creator-hub');
       else if (path === '/coaching') setCurrentPage('coaching');
       else if (path === '/pages-overview') setCurrentPage('pages-overview');
@@ -45,6 +47,7 @@ export default function App() {
   // Render detail pages
   if (currentPage === 'ai-search') return <AISearchPage />;
   if (currentPage === 'expert-qa') return <ExpertQAPage />;
+  if (currentPage === 'question-detail') return <QuestionDetailPage />;
   if (currentPage === 'creator-hub') return <CreatorHubPage />;
   if (currentPage === 'coaching') return <CoachingPage />;
   if (currentPage === 'pages-overview') return <PagesOverview />;
