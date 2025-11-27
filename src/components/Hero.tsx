@@ -72,7 +72,7 @@ export function Hero() {
               className="px-8 py-4 bg-[#1a1a24] border-2 border-[#b968ff] rounded-lg transition-all hover:bg-[#b968ff]/10 hover:shadow-[0_0_30px_rgba(185,104,255,0.3)] hover:scale-105"
               onMouseEnter={() => setActiveTooltip('experts')}
               onMouseLeave={() => setActiveTooltip(null)}
-              onClick={() => navigateTo('/expert-qa')}
+              onClick={() => navigateTo('/community')}
             >
               <span className="flex items-center gap-2">
                 <MessageSquare className="w-5 h-5" />
@@ -126,13 +126,13 @@ export function Hero() {
           {/* Expert Q&A Feature */}
           <button 
             className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-[#1a1a24] transition-all group cursor-pointer"
-            onClick={() => navigateTo('/expert-qa')}
+            onClick={() => navigateTo('/community')}
           >
             <div className="w-12 h-12 rounded-full bg-[#b968ff]/20 flex items-center justify-center border border-[#b968ff] group-hover:scale-110 transition-transform">
               <MessageSquare className="w-6 h-6 text-[#b968ff]" />
             </div>
-            <p className="text-sm text-[#b968ff]">Expert Q&A</p>
-            <p className="text-xs text-gray-500 text-center">Ask community experts</p>
+            <p className="text-sm text-[#b968ff]">Community</p>
+            <p className="text-xs text-gray-500 text-center">Q&A & VOD feedback</p>
           </button>
 
           {/* Creator Hub Feature */}
@@ -150,13 +150,13 @@ export function Hero() {
           {/* Coaching Feature */}
           <button 
             className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-[#1a1a24] transition-all group cursor-pointer"
-            onClick={() => navigateTo('/coaching')}
+            onClick={() => navigateTo('/community')}
           >
             <div className="w-12 h-12 rounded-full bg-[#00d9ff]/20 flex items-center justify-center border border-[#00d9ff] group-hover:scale-110 transition-transform">
               <FileText className="w-6 h-6 text-[#00d9ff]" />
             </div>
-            <p className="text-sm text-[#00d9ff]">Coaching</p>
-            <p className="text-xs text-gray-500 text-center">Get VOD review & feedback</p>
+            <p className="text-sm text-[#00d9ff]">VOD Feedback</p>
+            <p className="text-xs text-gray-500 text-center">Upload for coaching</p>
           </button>
         </div>
       </div>

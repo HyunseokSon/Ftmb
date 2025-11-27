@@ -15,6 +15,8 @@ export function ExpertQAPage() {
   const [videoLink, setVideoLink] = useState('');
   const [timestampStart, setTimestampStart] = useState('');
   const [timestampEnd, setTimestampEnd] = useState('');
+  const [filterMode, setFilterMode] = useState<'latest' | 'unanswered' | 'highest'>('latest');
+  const [questionDetailText, setQuestionDetailText] = useState('');
 
   const topContributors = [
     { rank: 1, name: 'ProGamer_Kim', answers: 342, earned: 45200, avatar: '🏆' },
@@ -230,14 +232,38 @@ export function ExpertQAPage() {
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl">Recent Questions</h2>
                 <div className="flex gap-2">
-                  <button className="px-4 py-2 bg-[#b968ff] text-white rounded-lg text-sm">Latest</button>
-                  <button className="px-4 py-2 bg-[#1a1a24] border border-white/10 rounded-lg text-sm hover:border-[#b968ff] transition-colors">Unanswered</button>
-                  <button className="px-4 py-2 bg-[#1a1a24] border border-white/10 rounded-lg text-sm hover:border-[#b968ff] transition-colors">Highest Reward</button>
+                  <button 
+                    className={`px-4 py-2 ${filterMode === 'latest' ? 'bg-[#b968ff] text-white' : 'bg-[#1a1a24] border border-white/10 text-gray-400 hover:border-[#b968ff]'} rounded-lg text-sm`}
+                    onClick={() => setFilterMode('latest')}
+                  >
+                    Latest
+                  </button>
+                  <button 
+                    className={`px-4 py-2 ${filterMode === 'unanswered' ? 'bg-[#b968ff] text-white' : 'bg-[#1a1a24] border border-white/10 text-gray-400 hover:border-[#b968ff]'} rounded-lg text-sm`}
+                    onClick={() => setFilterMode('unanswered')}
+                  >
+                    Unanswered
+                  </button>
+                  <button 
+                    className={`px-4 py-2 ${filterMode === 'highest' ? 'bg-[#b968ff] text-white' : 'bg-[#1a1a24] border border-white/10 text-gray-400 hover:border-[#b968ff]'} rounded-lg text-sm`}
+                    onClick={() => setFilterMode('highest')}
+                  >
+                    Highest Reward
+                  </button>
                 </div>
               </div>
 
               <div className="space-y-4">
-                {recentQuestions.map((q) => (
+                {recentQuestions
+                  .filter(q => {
+                    if (filterMode === 'unanswered') return q.status === 'open';
+                    return true;
+                  })
+                  .sort((a, b) => {
+                    if (filterMode === 'highest') return b.credits - a.credits;
+                    return 0; // Latest is default order
+                  })
+                  .map((q) => (
                   <div key={q.id} className="bg-[#1a1a24] rounded-xl border border-white/10 p-6 hover:border-[#b968ff]/50 transition-colors">
                     {/* Question Header */}
                     <div className="flex items-start justify-between mb-4">

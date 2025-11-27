@@ -1022,7 +1022,7 @@ export function AISearchPage() {
                                     Watch Clip
                                   </button>
                                   <button 
-                                    onClick={() => navigateTo('/expert-qa')}
+                                    onClick={() => navigateTo('/community')}
                                     className="px-4 py-2 bg-[#0a0a0f] border border-[#B968FF] text-[#B968FF] rounded-lg text-sm hover:bg-[#B968FF]/10 transition-all"
                                   >
                                     Ask Experts
@@ -1066,11 +1066,11 @@ export function AISearchPage() {
                         {message.showAskExpertsButton && (
                           <div className="mb-4">
                             <button
-                              onClick={() => navigateTo('/expert-qa')}
+                              onClick={() => navigateTo('/community')}
                               className="px-6 py-3 bg-gradient-to-r from-[#B968FF] to-[#FF5EAC] rounded-xl hover:shadow-[0_0_30px_rgba(185,104,255,0.4)] transition-all flex items-center gap-2 text-white"
                             >
                               <MessageSquare className="w-5 h-5" />
-                              <span>Ask Experts →</span>
+                              <span>Ask Community →</span>
                             </button>
                           </div>
                         )}

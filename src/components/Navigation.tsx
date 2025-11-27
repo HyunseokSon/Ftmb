@@ -1,4 +1,4 @@
-import { Search, MessageSquare, Video, FileText, Home } from 'lucide-react';
+import { Search, MessageSquare, Video, FileText, Home, Users } from 'lucide-react';
 import { navigateTo } from '../utils/navigation';
 
 export function Navigation() {
@@ -6,10 +6,9 @@ export function Navigation() {
 
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
-    { path: '/ai-search', label: 'AI Search', icon: Search, color: '#00d9ff' },
-    { path: '/expert-qa', label: 'Expert Q&A', icon: MessageSquare, color: '#b968ff' },
-    { path: '/creator-hub', label: 'Creator Hub', icon: Video, color: '#ff006e' },
-    { path: '/coaching', label: 'Coaching', icon: FileText, color: '#00ff88' }
+    { path: '/ai-search', label: 'AI Search', icon: Search, color: '#00FFC6' },
+    { path: '/community', label: 'Community', icon: Users, color: '#b968ff' },
+    { path: '/creator-hub', label: 'Creator Hub', icon: Video, color: '#ff006e' }
   ];
 
   return (
@@ -21,10 +20,10 @@ export function Navigation() {
             onClick={() => navigateTo('/')}
             className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#00d9ff] to-[#b968ff] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#00FFC6] to-[#b968ff] flex items-center justify-center">
               <span className="text-sm">🎮</span>
             </div>
-            <span className="text-lg bg-gradient-to-r from-[#00d9ff] to-[#b968ff] bg-clip-text text-transparent">
+            <span className="text-lg bg-gradient-to-r from-[#00FFC6] to-[#b968ff] bg-clip-text text-transparent">
               Gaming Platform
             </span>
           </button>
@@ -33,7 +32,8 @@ export function Navigation() {
           <div className="flex items-center gap-2">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = currentPath === item.path;
+              const isActive = currentPath === item.path || 
+                               (item.path === '/community' && (currentPath === '/expert-qa' || currentPath === '/coaching'));
               return (
                 <button
                   key={item.path}
@@ -62,9 +62,9 @@ export function Navigation() {
           {/* User Menu */}
           <div className="flex items-center gap-4">
             <div className="text-sm text-gray-400">
-              Credits: <span className="text-[#00d9ff]">8,500</span>
+              Credits: <span className="text-[#00FFC6]">8,500</span>
             </div>
-            <button className="w-8 h-8 rounded-full bg-gradient-to-r from-[#00d9ff] to-[#b968ff] flex items-center justify-center">
+            <button className="w-8 h-8 rounded-full bg-gradient-to-r from-[#00FFC6] to-[#b968ff] flex items-center justify-center">
               <span className="text-sm">U</span>
             </button>
           </div>
