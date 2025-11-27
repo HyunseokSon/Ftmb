@@ -1,4 +1,4 @@
-import { MessageSquare, TrendingUp, Award, ThumbsUp, Clock, Coins, ArrowLeft, Send } from 'lucide-react';
+import { MessageSquare, TrendingUp, Award, ThumbsUp, Clock, Coins, ArrowLeft, Send, X } from 'lucide-react';
 import { useState } from 'react';
 import { Navigation } from './Navigation';
 
@@ -6,6 +6,8 @@ export function ExpertQAPage() {
   const [questionText, setQuestionText] = useState('');
   const [selectedGame, setSelectedGame] = useState('');
   const [creditBudget, setCreditBudget] = useState('100');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const topContributors = [
     { rank: 1, name: 'ProGamer_Kim', answers: 342, earned: 45200, avatar: '🏆' },
@@ -65,7 +67,7 @@ export function ExpertQAPage() {
     <div className="min-h-screen bg-[#0a0a0f] text-white pt-16">
       <Navigation />
       {/* Header */}
-      <div className="bg-[#131318] border-b border-white/10">
+      <div className="bg-[#131318] border-b border-white/10 sticky top-16 z-40">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <button 
             onClick={() => window.location.href = '/'}
@@ -74,14 +76,23 @@ export function ExpertQAPage() {
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </button>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#b968ff]/20 to-[#b968ff]/5 flex items-center justify-center border border-[#b968ff]/30">
-              <MessageSquare className="w-6 h-6 text-[#b968ff]" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#b968ff]/20 to-[#b968ff]/5 flex items-center justify-center border border-[#b968ff]/30">
+                <MessageSquare className="w-6 h-6 text-[#b968ff]" />
+              </div>
+              <div>
+                <h1 className="text-3xl text-[#b968ff]">Expert Q&A</h1>
+                <p className="text-gray-400">Ask the community when AI can't help</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-3xl text-[#b968ff]">Expert Q&A</h1>
-              <p className="text-gray-400">Ask the community when AI can't help</p>
-            </div>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="px-6 py-3 bg-gradient-to-r from-[#b968ff] to-[#ff006e] rounded-xl hover:shadow-[0_0_30px_rgba(185,104,255,0.5)] transition-all hover:scale-105 flex items-center gap-2"
+            >
+              <Send className="w-5 h-5" />
+              Ask a Question
+            </button>
           </div>
         </div>
       </div>
@@ -90,78 +101,6 @@ export function ExpertQAPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Ask Question Section */}
-            <div className="bg-[#1a1a24] rounded-2xl border border-white/10 p-8">
-              <h2 className="text-2xl mb-6 flex items-center gap-2">
-                <Send className="w-6 h-6 text-[#b968ff]" />
-                Ask a Question
-              </h2>
-
-              <div className="space-y-4">
-                {/* Question Input */}
-                <div>
-                  <label className="block text-sm text-gray-400 mb-2">Your Question</label>
-                  <textarea
-                    value={questionText}
-                    onChange={(e) => setQuestionText(e.target.value)}
-                    placeholder="Describe your question in detail... What are you trying to learn or solve?"
-                    className="w-full px-4 py-3 bg-[#0a0a0f] border border-white/20 rounded-lg focus:outline-none focus:border-[#b968ff] transition-colors resize-none"
-                    rows={4}
-                  />
-                </div>
-
-                {/* Game Selection & Tags */}
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm text-gray-400 mb-2">Game</label>
-                    <select 
-                      value={selectedGame}
-                      onChange={(e) => setSelectedGame(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#0a0a0f] border border-white/20 rounded-lg focus:outline-none focus:border-[#b968ff] cursor-pointer"
-                    >
-                      <option value="">Select Game</option>
-                      <option value="valorant">Valorant</option>
-                      <option value="lol">League of Legends</option>
-                      <option value="maplestory">MapleStory</option>
-                      <option value="elden">Elden Ring</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm text-gray-400 mb-2">Credit Reward</label>
-                    <div className="relative">
-                      <Coins className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#b968ff]" />
-                      <input
-                        type="number"
-                        value={creditBudget}
-                        onChange={(e) => setCreditBudget(e.target.value)}
-                        className="w-full pl-12 pr-4 py-3 bg-[#0a0a0f] border border-white/20 rounded-lg focus:outline-none focus:border-[#b968ff]"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Tags */}
-                <div>
-                  <label className="block text-sm text-gray-400 mb-2">Tags (Select up to 3)</label>
-                  <div className="flex flex-wrap gap-2">
-                    {['Strategy', 'Mechanics', 'Build Guide', 'PvP', 'Farming', 'Boss Fight'].map((tag) => (
-                      <button
-                        key={tag}
-                        className="px-4 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg text-sm hover:border-[#b968ff] hover:bg-[#b968ff]/10 transition-colors"
-                      >
-                        {tag}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <button className="w-full py-4 bg-gradient-to-r from-[#b968ff] to-[#ff006e] rounded-lg hover:shadow-[0_0_30px_rgba(185,104,255,0.5)] transition-all hover:scale-105">
-                  Post Question (Cost: {creditBudget} credits)
-                </button>
-              </div>
-            </div>
-
             {/* Recent Questions */}
             <div>
               <div className="flex items-center justify-between mb-6">
@@ -317,6 +256,140 @@ export function ExpertQAPage() {
           </div>
         </div>
       </div>
+
+      {/* Modal for Asking a Question */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div 
+            className="bg-[#1a1a24] border border-white/10 rounded-2xl p-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl text-[#b968ff] flex items-center gap-2">
+                <Send className="w-6 h-6" />
+                Ask a Question
+              </h2>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {/* Question Title */}
+              <div>
+                <label className="block text-sm text-gray-400 mb-2">Question Title</label>
+                <input
+                  type="text"
+                  placeholder="e.g., How to counter Riven as Yasuo?"
+                  className="w-full px-4 py-3 bg-[#0a0a0f] border border-white/20 rounded-lg focus:outline-none focus:border-[#b968ff] transition-colors text-white"
+                />
+              </div>
+
+              {/* Question Details */}
+              <div>
+                <label className="block text-sm text-gray-400 mb-2">Question Details</label>
+                <textarea
+                  value={questionText}
+                  onChange={(e) => setQuestionText(e.target.value)}
+                  placeholder="Describe your question in detail... What are you trying to learn or solve?"
+                  className="w-full px-4 py-3 bg-[#0a0a0f] border border-white/20 rounded-lg focus:outline-none focus:border-[#b968ff] transition-colors resize-none text-white"
+                  rows={5}
+                />
+              </div>
+
+              {/* Game Selection & Credit Reward */}
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm text-gray-400 mb-2">Game / Category</label>
+                  <select 
+                    value={selectedGame}
+                    onChange={(e) => setSelectedGame(e.target.value)}
+                    className="w-full px-4 py-3 bg-[#0a0a0f] border border-white/20 rounded-lg focus:outline-none focus:border-[#b968ff] cursor-pointer text-white"
+                  >
+                    <option value="">Select Game</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="lol">League of Legends</option>
+                    <option value="maplestory">MapleStory</option>
+                    <option value="elden">Elden Ring</option>
+                    <option value="cs2">CS2</option>
+                    <option value="diablo">Diablo 2</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-400 mb-2">Credit Reward (Optional)</label>
+                  <div className="relative">
+                    <Coins className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#b968ff]" />
+                    <input
+                      type="number"
+                      value={creditBudget}
+                      onChange={(e) => setCreditBudget(e.target.value)}
+                      placeholder="100"
+                      className="w-full pl-12 pr-4 py-3 bg-[#0a0a0f] border border-white/20 rounded-lg focus:outline-none focus:border-[#b968ff] text-white"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">Higher rewards attract better answers</p>
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div>
+                <label className="block text-sm text-gray-400 mb-2">Tags (Select up to 3)</label>
+                <div className="flex flex-wrap gap-2">
+                  {['Strategy', 'Mechanics', 'Build Guide', 'PvP', 'Farming', 'Boss Fight'].map((tag) => (
+                    <button
+                      key={tag}
+                      className={`px-4 py-2 border rounded-lg text-sm transition-colors ${
+                        selectedTags.includes(tag) 
+                          ? 'bg-[#b968ff]/20 border-[#b968ff] text-[#b968ff]' 
+                          : 'bg-[#0a0a0f] border-white/10 hover:border-[#b968ff] hover:bg-[#b968ff]/10'
+                      }`}
+                      onClick={() => {
+                        if (selectedTags.includes(tag)) {
+                          setSelectedTags(selectedTags.filter(t => t !== tag));
+                        } else if (selectedTags.length < 3) {
+                          setSelectedTags([...selectedTags, tag]);
+                        }
+                      }}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4">
+                <button 
+                  onClick={() => setIsModalOpen(false)}
+                  className="flex-1 py-3 bg-[#0a0a0f] border border-white/20 rounded-lg hover:border-white/40 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  className="flex-1 py-3 bg-gradient-to-r from-[#b968ff] to-[#ff006e] rounded-lg hover:shadow-[0_0_30px_rgba(185,104,255,0.5)] transition-all"
+                  onClick={() => {
+                    // Handle form submission here
+                    setIsModalOpen(false);
+                    // Reset form
+                    setQuestionText('');
+                    setSelectedGame('');
+                    setCreditBudget('100');
+                    setSelectedTags([]);
+                  }}
+                >
+                  Post Question ({creditBudget} credits)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
