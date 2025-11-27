@@ -972,22 +972,7 @@ export function AISearchPage() {
                       <span className="text-xs text-gray-500">{formatTime(message.timestamp)}</span>
                     </div>
                     
-                    {/* AI Text Response */}
-                    <div className="bg-[#1a1a24] border border-white/10 rounded-2xl rounded-tl-sm p-5 mb-4">
-                      <div className="prose prose-invert max-w-none">
-                        {message.content.split('\n').map((line, i) => (
-                          <p key={i} className="mb-2 last:mb-0 text-gray-300 text-sm leading-relaxed">
-                            {line.includes('**') ? (
-                              line.split('**').map((part, j) => 
-                                j % 2 === 0 ? part : <strong key={j} className="text-white">{part}</strong>
-                              )
-                            ) : line}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Video Results Cards */}
+                    {/* Video Results Cards - NOW SHOWN FIRST */}
                     {message.videoResults && message.videoResults.length > 0 && (
                       <div className="space-y-3 mb-4">
                         {message.videoResults.map((video) => (
@@ -1058,6 +1043,21 @@ export function AISearchPage() {
                         ))}
                       </div>
                     )}
+
+                    {/* AI Text Response - NOW SHOWN SECOND */}
+                    <div className="bg-[#1a1a24] border border-white/10 rounded-2xl rounded-tl-sm p-5 mb-4">
+                      <div className="prose prose-invert max-w-none">
+                        {message.content.split('\n').map((line, i) => (
+                          <p key={i} className="mb-2 last:mb-0 text-gray-300 text-sm leading-relaxed">
+                            {line.includes('**') ? (
+                              line.split('**').map((part, j) => 
+                                j % 2 === 0 ? part : <strong key={j} className="text-white">{part}</strong>
+                              )
+                            ) : line}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
 
                     {/* Follow-up Questions */}
                     {message.followUpQuestions && message.followUpQuestions.length > 0 && (
