@@ -56,13 +56,14 @@ export function AISearchPage() {
     setInput('');
     setIsTyping(true);
 
-    // Generate detailed AI response based on question
+    // Generate detailed AI response based on question with keyword matching
     setTimeout(() => {
       let aiResponse: Message;
       const lowerQuery = messageText.toLowerCase();
 
-      // Jett super jump question
-      if (lowerQuery.includes('jett') && (lowerQuery.includes('super jump') || lowerQuery.includes('jump'))) {
+      // Jett super jump question - keyword matching (supports Korean)
+      if ((lowerQuery.includes('jett') || lowerQuery.includes('제트')) && 
+          (lowerQuery.includes('super jump') || lowerQuery.includes('jump') || lowerQuery.includes('점프') || lowerQuery.includes('timing') || lowerQuery.includes('타이밍'))) {
         aiResponse = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
@@ -108,8 +109,9 @@ export function AISearchPage() {
           ]
         };
       }
-      // Elden Ring parry timing
-      else if (lowerQuery.includes('elden ring') && lowerQuery.includes('parry')) {
+      // Elden Ring parry timing - keyword matching (supports Korean)
+      else if ((lowerQuery.includes('elden ring') || lowerQuery.includes('엘든링') || lowerQuery.includes('elden')) && 
+               (lowerQuery.includes('parry') || lowerQuery.includes('패링') || lowerQuery.includes('timing') || lowerQuery.includes('타이밍'))) {
         aiResponse = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
@@ -155,8 +157,9 @@ export function AISearchPage() {
           ]
         };
       }
-      // CS2 smoke lineup
-      else if ((lowerQuery.includes('cs2') || lowerQuery.includes('counter strike')) && lowerQuery.includes('smoke')) {
+      // CS2 smoke lineup - keyword matching (supports Korean)
+      else if ((lowerQuery.includes('cs2') || lowerQuery.includes('counter strike') || lowerQuery.includes('카스') || lowerQuery.includes('counter-strike')) && 
+               (lowerQuery.includes('smoke') || lowerQuery.includes('스모크') || lowerQuery.includes('mirage') || lowerQuery.includes('미라지') || lowerQuery.includes('lineup'))) {
         aiResponse = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
@@ -202,8 +205,9 @@ export function AISearchPage() {
           ]
         };
       }
-      // LoL wave management
-      else if ((lowerQuery.includes('league') || lowerQuery.includes('lol')) && (lowerQuery.includes('wave') || lowerQuery.includes('laning'))) {
+      // LoL wave management - keyword matching (supports Korean)
+      else if ((lowerQuery.includes('league') || lowerQuery.includes('lol') || lowerQuery.includes('롤') || lowerQuery.includes('league of legends')) && 
+               (lowerQuery.includes('wave') || lowerQuery.includes('laning') || lowerQuery.includes('웨이브') || lowerQuery.includes('라인') || lowerQuery.includes('basic'))) {
         aiResponse = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
@@ -246,6 +250,55 @@ export function AISearchPage() {
             "Wave control specifically for bot lane ADC",
             "How to break an enemy freeze?",
             "When should I give up CS to maintain freeze?"
+          ]
+        };
+      }
+      // Diablo 2 Resurrected - Barbarian Mephisto strategy (Korean + English keyword matching)
+      else if ((lowerQuery.includes('diablo') || lowerQuery.includes('디아블로') || lowerQuery.includes('디아2') || lowerQuery.includes('diablo 2')) && 
+               (lowerQuery.includes('mephisto') || lowerQuery.includes('메피스토')) && 
+               (lowerQuery.includes('barbarian') || lowerQuery.includes('barb') || lowerQuery.includes('바바리안') || lowerQuery.includes('바바'))) {
+        aiResponse = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: `Excellent question! **Barbarian vs Mephisto in Nightmare Difficulty** requires a specific approach since Barbs lack ranged attacks. Here's the complete strategy breakdown.\n\n**(Clip #1 — 00:18–00:35)** shows the full clear sequence with optimal positioning.\n\n**Recommended Skill Build:**\n\n| Skill | Points | Priority | Purpose |\n|-------|--------|----------|----------|\n| **Whirlwind** | 20 (Max) | Primary | Main DPS skill |\n| **Battle Orders** | 20 (Max) | Essential | +HP/Mana survivability |\n| **Shout** | 10+ | High | +Defense vs Council |\n| **Find Item** | 1 | Optional | Extra loot after kill |\n| **Leap** | 1 | Movement | Skip moat safely |\n\n**Combat Sequence (Step-by-Step):**\n\n**1️⃣ Pre-Battle Preparation**\n- Cast **Battle Orders** (lasts 5 minutes)\n- Cast **Shout** for defense buff\n- Drink **Thawing Potion** (prevents freeze)\n- Equip **Crushing Blow weapon** for boss DPS\n\n**2️⃣ Clearing Council Members (Timestamp: 00:18–00:24)**\n- Use **Leap** to jump over moat to safe corner\n- Pull Council members **one at a time** (critical!)\n- Whirlwind in circles to avoid conviction aura stack\n- Keep moving to prevent hydra damage\n\n**3️⃣ Mephisto Engagement (Timestamp: 00:25–00:35)**\n- Position Mephisto near **pillar or wall**\n- Activate **Berserk** for magic damage (if available)\n- Whirlwind in **tight circles** around him\n- Watch for lightning nova — move immediately\n- Use **moat trick** if health drops below 30%\n\n**Moat Trick Technique:**\n- Stand on opposite side of moat from Mephisto\n- He cannot cross, but you can Whirlwind across\n- Lets you reset potions safely\n\n**Recommended Gear Setup:**\n\n**Weapon:**\n- **Oath Runeword** (Shael + Pul + Mal + Lum) — Budget option\n- **Grief Phase Blade** — Endgame option\n- Alternative: **Blade of Ali Baba** for Magic Find\n\n**Armor:**\n- **Smoke Runeword** (Nef + Lum) — Huge resist bonus\n- **Duress** for more damage\n\n**Helmet:**\n- **Arreat's Face** — Best in slot\n- **Guillaume's Face** (Budget) — Crushing Blow\n\n**Other:**\n- **Laying of Hands Gloves** — +350% demon damage!\n- **Gore Rider Boots** — Crushing Blow + speed\n- **Raven Frost Ring** — Cannot be Frozen\n- **Resistances:** Need 75% all resists for Nightmare (check with -Resist check)\n\n**Mercenary Recommendation:**\n\n**Best Choice: Act 2 Nightmare Defensive Merc**\n- Provides **Holy Freeze aura** (slows enemies)\n- Equip with **Insight Runeword** for mana regen\n- Armor: **Treachery** or **Duriel's Shell**\n- Helmet: **Tal Rasha's Mask** with life leech\n\n**Common Mistakes to Avoid:**\n\n☒ Fighting all Council members at once (you'll die)\n☒ Not using Thawing Potion (frozen = death)\n☒ Standing still while Whirlwinding (hydra hits)\n☒ Forgetting to recast Battle Orders after death\n☒ Using Berserk without Cannot be Frozen (dangerous)\n\n**Advanced Tips:**\n\n✔ Keep **antidote potions** for poison clouds\n✔ Use **Prevent Monster Heal** if fight takes too long\n✔ If dying often, farm **Nightmare Baal** for better gear first\n✔ Swap to Magic Find gear BEFORE final hit for better drops\n\n**Efficiency Route:**\n1. Waypoint → Durance Level 3\n2. Clear Council (30 seconds)\n3. Kill Mephisto (15-20 seconds)\n4. Town portal → Sell loot\n5. Repeat (Full run: ~2 minutes)\n\nLet me show you professional speedrun demonstrations:`,
+          timestamp: new Date(),
+          videoResults: [
+            {
+              id: '1',
+              title: 'Barbarian Mephisto Full Clear - Nightmare',
+              game: 'Diablo 2 Resurrected',
+              timestampStart: '00:18',
+              timestampEnd: '00:35',
+              thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+              description: 'Complete sequence: Council pull strategy + Moat trick + Whirlwind positioning.',
+              confidence: 97
+            },
+            {
+              id: '2',
+              title: 'Budget Gear Barbarian - Nightmare Viable',
+              game: 'Diablo 2 Resurrected',
+              timestampStart: '01:12',
+              timestampEnd: '01:28',
+              thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+              description: 'Gear showcase: Oath weapon + Smoke armor + Guillaume face. Total cost: ~Ist rune.',
+              confidence: 95
+            },
+            {
+              id: '3',
+              title: 'Mephisto Speedrun - 45 Second Clear',
+              game: 'Diablo 2 Resurrected',
+              timestampStart: '02:05',
+              timestampEnd: '02:34',
+              thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
+              description: 'Optimized route with perfect Council skip and moat trick execution.',
+              confidence: 93
+            }
+          ],
+          followUpQuestions: [
+            "What's the best farming route for Barbarian in Nightmare?",
+            "How to transition to Hell difficulty with Barbarian?",
+            "Best runewords for budget Barbarian build?",
+            "Barbarian vs Baal strategy for Nightmare?"
           ]
         };
       }
