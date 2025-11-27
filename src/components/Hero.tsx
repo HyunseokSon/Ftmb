@@ -2,6 +2,7 @@ import { Search, MessageSquare, Video, FileText } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useState } from 'react';
 import { Navigation } from './Navigation';
+import { navigateTo } from '../utils/navigation';
 
 export function Hero() {
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);

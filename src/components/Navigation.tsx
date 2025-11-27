@@ -1,10 +1,5 @@
 import { Search, MessageSquare, Video, FileText, Home } from 'lucide-react';
-
-// Helper function to navigate without page reload
-const navigateTo = (path: string) => {
-  window.history.pushState({}, '', path);
-  window.dispatchEvent(new Event('navigateApp'));
-};
+import { navigateTo } from '../utils/navigation';
 
 export function Navigation() {
   const currentPath = window.location.pathname;
