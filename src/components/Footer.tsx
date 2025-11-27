@@ -1,4 +1,5 @@
 import { Twitter, Youtube, Twitch, Instagram, Mail } from 'lucide-react';
+import { navigateTo } from '../utils/navigation';
 
 export function Footer() {
   return (
@@ -8,18 +9,18 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl mb-4 bg-gradient-to-r from-[#00d9ff] to-[#b968ff] bg-clip-text text-transparent">
+            <h3 className="text-2xl mb-4 bg-gradient-to-r from-[#00FFC6] to-[#b968ff] bg-clip-text text-transparent">
               찾아줘 알려줘<br />만들어줘 피드백해줘
             </h3>
             <p className="text-gray-400 mb-6 max-w-sm">
-              The ultimate gaming knowledge and creation platform. Find answers, request content, and level up with expert coaching.
+              The ultimate gaming knowledge and creation platform. Search with AI, get community feedback, and join creator campaigns.
             </p>
             
             {/* Social Links */}
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 rounded-lg bg-[#1a1a24] border border-white/10 flex items-center justify-center hover:border-[#00d9ff] hover:bg-[#00d9ff]/10 transition-colors"
+                className="w-10 h-10 rounded-lg bg-[#1a1a24] border border-white/10 flex items-center justify-center hover:border-[#00FFC6] hover:bg-[#00FFC6]/10 transition-colors"
               >
                 <Twitter className="w-5 h-5" />
               </a>
@@ -46,27 +47,22 @@ export function Footer() {
 
           {/* Product */}
           <div>
-            <h4 className="mb-4 text-[#00d9ff]">Product</h4>
+            <h4 className="mb-4 text-[#00FFC6]">Product</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Find It (AI Search)
-                </a>
+                <button onClick={() => navigateTo('/ai-search')} className="text-gray-400 hover:text-white transition-colors text-left">
+                  AI Search
+                </button>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Tell Me (Q&A)
-                </a>
+                <button onClick={() => navigateTo('/community')} className="text-gray-400 hover:text-white transition-colors text-left">
+                  Game Knowledge Hub
+                </button>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Make It (Marketplace)
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Give Feedback (Coaching)
-                </a>
+                <button onClick={() => navigateTo('/creator-hub')} className="text-gray-400 hover:text-white transition-colors text-left">
+                  Creator Hub
+                </button>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -124,7 +120,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Coach Handbook
+                  Community Guide
                 </a>
               </li>
               <li>
@@ -133,16 +129,16 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <button onClick={() => navigateTo('/community')} className="text-gray-400 hover:text-white transition-colors text-left">
                   Community
-                </a>
+                </button>
               </li>
             </ul>
           </div>
         </div>
 
         {/* CTA Banner */}
-        <div className="bg-gradient-to-r from-[#1a1a24] to-[#1a1a24] rounded-2xl border border-[#00d9ff]/30 p-8 mb-12">
+        <div className="bg-gradient-to-r from-[#1a1a24] to-[#1a1a24] rounded-2xl border border-[#00FFC6]/30 p-8 mb-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
               <h4 className="text-2xl mb-2">Ready to Level Up?</h4>
@@ -151,7 +147,10 @@ export function Footer() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-              <button className="px-8 py-4 bg-gradient-to-r from-[#00d9ff] to-[#b968ff] rounded-lg hover:shadow-[0_0_30px_rgba(0,217,255,0.5)] transition-all hover:scale-105 whitespace-nowrap">
+              <button 
+                onClick={() => navigateTo('/ai-search')}
+                className="px-8 py-4 bg-gradient-to-r from-[#00FFC6] to-[#b968ff] rounded-lg hover:shadow-[0_0_30px_rgba(0,255,198,0.5)] transition-all hover:scale-105 whitespace-nowrap text-[#0a0a0f] font-medium"
+              >
                 Get Started Free
               </button>
               <button className="px-8 py-4 bg-[#1a1a24] border-2 border-[#b968ff] rounded-lg transition-all hover:bg-[#b968ff]/10 hover:scale-105 whitespace-nowrap">
@@ -166,7 +165,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="flex-1 text-center md:text-left">
               <h4 className="text-xl mb-2 flex items-center justify-center md:justify-start gap-2">
-                <Mail className="w-5 h-5 text-[#00d9ff]" />
+                <Mail className="w-5 h-5 text-[#00FFC6]" />
                 Stay Updated
               </h4>
               <p className="text-gray-400 text-sm">
@@ -177,9 +176,9 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 md:w-64 px-4 py-3 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:border-[#00d9ff] transition-colors"
+                className="flex-1 md:w-64 px-4 py-3 bg-[#0a0a0f] border border-white/10 rounded-lg focus:outline-none focus:border-[#00FFC6] transition-colors"
               />
-              <button className="px-6 py-3 bg-[#00d9ff] text-[#0a0a0f] rounded-lg hover:bg-[#00d9ff]/90 transition-colors whitespace-nowrap">
+              <button className="px-6 py-3 bg-[#00FFC6] text-[#0a0a0f] rounded-lg hover:bg-[#00FFC6]/90 transition-colors whitespace-nowrap">
                 Subscribe
               </button>
             </div>
@@ -189,7 +188,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © 2024 찾아줘 알려줘 만들어줘 피드백해줘. All rights reserved.
+            © 2024 찾아줘 알려줘 만들어줘 피��백해줘. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">

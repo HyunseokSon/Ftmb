@@ -224,27 +224,46 @@ export function GameKnowledgeHub() {
       id: 1,
       author: 'ProGamer_Kim',
       avatar: '🏆',
+      badge: 'Coach',
       timeAgo: '2 hours ago',
       upvotes: 35,
       text: selectedPost.type === 'text' 
-        ? 'Use small cyan crosshair with 1-4-2-2 settings. Keeps your focus tight for headshot precision. Inner lines at 4, outer lines at 2, center gap at 2, thickness at 2.'
+        ? 'Use small cyan crosshair with 1-4-2-2 settings. Keeps your focus tight for headshot precision. Inner lines at 4, outer lines at 2, center gap at 2, thickness at 2. The key is to keep the center dot visible but not distracting.'
         : 'At 02:30 you engaged too early without checking if your frontline was in position. Wait for your tank to initiate, then follow up with your tornado. Also, your windwall was wasted on the initial poke - save it for the enemy ADC\'s ultimate.',
-      videoThumbnail: selectedPost.type === 'video' ? 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400' : undefined,
-      timestamp: selectedPost.type === 'video' ? '02:30 - 02:45' : undefined,
+      videoThumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+      timestamp: selectedPost.type === 'text' ? 'Appears at 00:42 - 01:10' : '02:30 - 02:45',
+      clipTitle: selectedPost.type === 'text' ? 'Sheriff one-tap headshot training on Haven A site' : 'Team fight engagement timing analysis',
       videoLink: 'Analysis Clip'
     },
     {
       id: 2,
       author: 'Coach_Sarah',
       avatar: '⭐',
+      badge: 'Verified',
       timeAgo: '4 hours ago',
       upvotes: 28,
       text: selectedPost.type === 'text'
-        ? 'Pro tip: Try experimenting with different colors for different weapons. Many pros use cyan for rifles and yellow for pistols to psychologically separate the playstyles.'
+        ? 'Pro tip: Try experimenting with different colors for different weapons. Many pros use cyan for rifles and yellow for pistols to psychologically separate the playstyles. Also practice flicking to the same distance repeatedly.'
         : 'Your positioning at 07:45 was much better! You waited for the enemy to blow their cooldowns. However, you could have gotten a better angle by flanking from the right side instead of going straight in.',
-      videoThumbnail: selectedPost.type === 'video' ? 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400' : undefined,
-      timestamp: selectedPost.type === 'video' ? '07:45 - 08:10' : undefined,
-      videoLink: 'Follow-up Analysis'
+      videoThumbnail: selectedPost.type === 'text' ? 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400' : 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+      timestamp: selectedPost.type === 'text' ? 'Key moments at 01:15 - 01:40' : '07:45 - 08:10',
+      clipTitle: selectedPost.type === 'text' ? 'Crosshair color psychology in competitive play' : 'Follow-up positioning analysis',
+      videoLink: 'Watch Tutorial'
+    },
+    {
+      id: 3,
+      author: 'TacticalCoach_Lee',
+      avatar: '🎯',
+      badge: 'Expert',
+      timeAgo: '6 hours ago',
+      upvotes: 19,
+      text: selectedPost.type === 'text'
+        ? 'Practice Sheriff aim in the Range with bots moving at different speeds. Focus on the initial flick speed rather than tracking. Your first shot accuracy matters most.'
+        : 'Watch your minimap awareness. At several key moments you missed opportunities because you didn\'t see the flank coming.',
+      videoThumbnail: undefined, // Text-only answer example
+      timestamp: undefined,
+      clipTitle: undefined,
+      videoLink: undefined
     }
   ] : [];
 
@@ -648,6 +667,11 @@ export function GameKnowledgeHub() {
                                 <Award className="w-4 h-4 text-[#00ff88]" />
                                 <span className="text-xs text-gray-500">{answer.timeAgo}</span>
                               </div>
+                              {answer.badge && (
+                                <span className="text-sm text-gray-500 bg-[#0a0a0f] border border-[#00ff88] px-2 py-1 rounded">
+                                  {answer.badge}
+                                </span>
+                              )}
                             </div>
                             <div className="flex items-center gap-1 text-gray-400">
                               <ThumbsUp className="w-5 h-5" />
