@@ -11,7 +11,6 @@ type Message = {
   timestamp: Date;
   videoResults?: VideoResult[];
   followUpQuestions?: string[];
-  isStreaming?: boolean;
 };
 
 type VideoResult = {
@@ -56,303 +55,260 @@ export function AISearchPage() {
     setInput('');
     setIsTyping(true);
 
-    // Generate detailed AI response based on question with keyword matching
+    // Simulate typing delay and return hardcoded response
     setTimeout(() => {
-      let aiResponse: Message;
-      const lowerQuery = messageText.toLowerCase();
-
-      // Jett super jump question - keyword matching (supports Korean)
-      if ((lowerQuery.includes('jett') || lowerQuery.includes('제트')) && 
-          (lowerQuery.includes('super jump') || lowerQuery.includes('jump') || lowerQuery.includes('점프') || lowerQuery.includes('timing') || lowerQuery.includes('타이밍'))) {
-        aiResponse = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: `Great question! The **Jett Super Jump** is a momentum trick using Dash + Jump buffering. This technique is essential for aggressive entry fragging and unexpected angles.\n\nHere's the exact sequence you need to master **(Timestamp: Clip #1 — 00:14–00:21)**:\n\n**Step-by-Step Execution:**\n1️⃣ **Cast Tailwind (Dash)** toward wall or direction you want to go\n2️⃣ **Within 0.15s**, press Jump + W together (timing is critical!)\n3️⃣ **Slightly tilt camera downward** for maximum lift\n4️⃣ **Glide by holding Space** to maintain momentum\n\n**Common Mistakes to Avoid:**\n☒ Jumping before Dash — ruins momentum\n☒ Holding W too long — reduces height\n☒ Camera facing forward — no vertical lift\n☒ Using Dash without charges — practice in custom games first\n\n**Pro Tips:**\n✔ Practice on Haven A site boxes first\n✔ Bind jump to scroll wheel for faster input\n✔ Combine with updraft for triple-height jumps\n✔ Works best at 60+ FPS for consistent timing\n\nI've found multiple pro player VODs demonstrating this technique perfectly:`,
-          timestamp: new Date(),
-          videoResults: [
-            {
-              id: '1',
-              title: 'TenZ Jett Super Jump Tutorial',
-              game: 'Valorant',
-              timestampStart: '00:14',
-              timestampEnd: '00:21',
-              thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
-              description: 'Perfect execution: Dash → Jump + W within 0.15s → Camera tilt downward for lift.',
-              confidence: 98
-            },
-            {
-              id: '2',
-              title: 'Super Jump on Every Map',
-              game: 'Valorant',
-              timestampStart: '02:34',
-              timestampEnd: '02:48',
-              thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
-              description: 'Map-specific spots: Haven A, Bind Showers, Ascent Mid. Slow-motion breakdown included.',
-              confidence: 96
-            },
-            {
-              id: '3',
-              title: 'Competitive Match Usage',
-              game: 'Valorant',
-              timestampStart: '05:12',
-              timestampEnd: '05:30',
-              thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
-              description: 'Tournament example: TenZ uses super jump for A site entry on Ascent.',
-              confidence: 94
-            }
-          ],
-          followUpQuestions: [
-            "Show me on Haven A site specifically",
-            "Can you show a slow-motion version?",
-            "Is this allowed in ranked/competitive?",
-            "How to combine with updraft for triple jump?"
-          ]
-        };
-      }
-      // Elden Ring parry timing - keyword matching (supports Korean)
-      else if ((lowerQuery.includes('elden ring') || lowerQuery.includes('엘든링') || lowerQuery.includes('elden')) && 
-               (lowerQuery.includes('parry') || lowerQuery.includes('패링') || lowerQuery.includes('timing') || lowerQuery.includes('타이밍'))) {
-        aiResponse = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: `Excellent question! **Parry timing in Elden Ring** is all about reading enemy animation frames. Most enemies give you a **0.30–0.35s parry window**, but this varies significantly by enemy type.\n\n**(Clip #1 — 00:21–00:26)** shows the exact frame timing for common enemies:\n\n**Enemy Parry Windows:**\n\n| Enemy Type | Parry Window | Difficulty | Notes |\n|------------|-------------|------------|-------|\n| Godrick Soldier | 0.33s | Easy | Wide swing telegraphs |\n| Crucible Knight | 0.26s | Medium | Fast combo strings |\n| Black Knife Assassin | 0.18s | Hard | Delayed attacks |\n| Tree Sentinel | 0.35s | Easy | Huge wind-up |\n\n**Critical Technique Breakdown:**\n\n**When to Parry:**\n1️⃣ Watch for the **arm extension** (not weapon swing start)\n2️⃣ Press parry **0.1s before impact**\n3️⃣ Listen for audio cue (weapon whoosh sound)\n\n**Best Parry Tools:**\n✔ **Buckler** — Adds +18% parry frames (easiest)\n✔ **Parry Dagger** — +15% frames, faster animation\n✔ Golden Parry (Ash of War) — +30% range\n\n**Pro Tips for Consistent Parries:**\n✔ Disable motion blur in settings for clearer animation reading\n✔ Practice on Limgrave soldiers first (most forgiving)\n✔ Use target lock to maintain camera stability\n✔ Two-handed weapons cannot be parried (watch for this!)\n\n**Common Mistakes:**\n☒ Parrying too early (react to arm, not wind-up)\n☒ Using medium shields (slower parry frames)\n☒ Trying to parry jump attacks (most are unparryable)\n\nLet me show you the exact frame-by-frame breakdowns:`,
-          timestamp: new Date(),
-          videoResults: [
-            {
-              id: '1',
-              title: 'Parry Frame Analysis - All Enemies',
-              game: 'Elden Ring',
-              timestampStart: '00:21',
-              timestampEnd: '00:26',
-              thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
-              description: 'Frame-by-frame breakdown: Godrick Soldier, Crucible Knight, Tree Sentinel parry windows.',
-              confidence: 97
-            },
-            {
-              id: '2',
-              title: 'Buckler vs Golden Parry Comparison',
-              game: 'Elden Ring',
-              timestampStart: '01:45',
-              timestampEnd: '02:03',
-              thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
-              description: 'Side-by-side frame comparison showing extended parry windows with different tools.',
-              confidence: 95
-            },
-            {
-              id: '3',
-              title: 'Boss Parry Guide - Margit to Malenia',
-              game: 'Elden Ring',
-              timestampStart: '03:12',
-              timestampEnd: '03:38',
-              thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
-              description: 'Which boss attacks can be parried? Complete breakdown with timestamps.',
-              confidence: 93
-            }
-          ],
-          followUpQuestions: [
-            "Can you show parry training drills?",
-            "Which bosses cannot be parried at all?",
-            "How to parry Malenia's Waterfowl Dance?",
-            "Best parry build for PvP?"
-          ]
-        };
-      }
-      // CS2 smoke lineup - keyword matching (supports Korean)
-      else if ((lowerQuery.includes('cs2') || lowerQuery.includes('counter strike') || lowerQuery.includes('카스') || lowerQuery.includes('counter-strike')) && 
-               (lowerQuery.includes('smoke') || lowerQuery.includes('스모크') || lowerQuery.includes('mirage') || lowerQuery.includes('미라지') || lowerQuery.includes('lineup'))) {
-        aiResponse = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: `Perfect timing! Let me break down the **essential smoke lineups for Mirage A site execute**. These three smokes will give you full site control and cut off CT rotations.\n\n**Critical Smokes for A Site Execute:**\n\n| Target | Throw Type | Position | Timestamp |\n|--------|-----------|----------|----------|\n| **CT Spawn** | Jump Throw | T Stairs | Clip #1 — 00:12–00:18 |\n| **Jungle** | Stand Throw | Top Mid | Clip #2 — 00:21–00:27 |\n| **Stairs** | Crouch Throw | Ramp | Clip #3 — 00:28–00:35 |\n\n**Detailed Execution Guide:**\n\n**1️⃣ CT Smoke (Most Critical)**\n- Position: Stand on **second stair from top** at T Stairs\n- Aim: Top-left corner of Palace window\n- Throw: **Jump Throw bind** (essential for consistency)\n- Timing: Throw this **LAST** to avoid early AWP peek\n\n**2️⃣ Jungle Smoke**\n- Position: Top Mid connector near wall\n- Aim: Lamp post above Jungle entrance  \n- Throw: **Standing throw** with left-click\n- Timing: Throw first to block rotations\n\n**3️⃣ Stairs Smoke**\n- Position: Bottom of Ramp\n- Aim: Top-right corner of Balcony ledge\n- Throw: **Crouch + Left-click**\n- Timing: Throw second, before CT smoke\n\n**Pro Execution Tips:**\n✔ **Throw CT smoke LAST** to prevent early AWP peeks from CT spawn\n✔ Coordinate with **Ramp Flash + Balcony Molotov** for best timing\n✔ Have teammate ready to trade if CT pushes through smoke\n✔ Use **Tetris smoke** as backup if Jungle smoke fails\n\n**Common Mistakes:**\n☒ Throwing CT smoke too early (gives CT time to setup)\n☒ Not using jump throw bind (inconsistent smokes)\n☒ Forgetting to check Sandwich after smokes land\n☒ Rushing in before smokes fully bloom (1.5s delay)\n\n**Alternative Setup:**\nIf playing without jump throw bind, use **one-way smoke** on Stairs instead (Clip #3 shows positioning).\n\nHere are the exact lineup demonstrations:`,
-          timestamp: new Date(),
-          videoResults: [
-            {
-              id: '1',
-              title: 'Mirage A Site - CT Smoke Lineup',
-              game: 'CS2',
-              timestampStart: '00:12',
-              timestampEnd: '00:18',
-              thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
-              description: 'CT Spawn smoke: Jump throw from T Stairs, aim at Palace window corner.',
-              confidence: 99
-            },
-            {
-              id: '2',
-              title: 'Complete A Execute Strategy',
-              game: 'CS2',
-              timestampStart: '00:21',
-              timestampEnd: '00:35',
-              thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
-              description: 'Full execute sequence: Jungle + Stairs + CT smoke with flash/molotov coordination.',
-              confidence: 97
-            },
-            {
-              id: '3',
-              title: 'Pro Team A Execute - Tournament VOD',
-              game: 'CS2',
-              timestampStart: '01:12',
-              timestampEnd: '01:32',
-              thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
-              description: 'FaZe Clan executing A site with perfect smoke timing and trades.',
-              confidence: 95
-            }
-          ],
-          followUpQuestions: [
-            "Show me Molotov spots for A site",
-            "How to counter this execute as CT?",
-            "B site smoke lineups for Mirage?",
-            "Jump throw bind setup guide?"
-          ]
-        };
-      }
-      // LoL wave management - keyword matching (supports Korean)
-      else if ((lowerQuery.includes('league') || lowerQuery.includes('lol') || lowerQuery.includes('롤') || lowerQuery.includes('league of legends')) && 
-               (lowerQuery.includes('wave') || lowerQuery.includes('laning') || lowerQuery.includes('웨이브') || lowerQuery.includes('라인') || lowerQuery.includes('basic'))) {
-        aiResponse = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: `Excellent question! **Wave management** is one of the most important fundamentals in League of Legends. Mastering this will help you control lane pressure, avoid ganks, and setup dives.\n\n**Three Core Wave Strategies:**\n\n| Strategy | Use Case | Method | Risk Level |\n|----------|----------|--------|------------|\n| **Freeze** | Avoid ganks, deny CS | Keep 3-4 enemy minions alive near your tower | Low |\n| **Slow Push** | Setup dive, recall timing | Stack 2+ waves then let them push | Medium |\n| **Fast Push** | Quick recall, roam | Kill entire wave ASAP, crash into tower | High |\n\n**(Clip #3 — 01:12–01:27)** demonstrates all three techniques in a real game scenario.\n\n**Detailed Breakdown:**\n\n**1️⃣ FREEZE (Defensive Control)**\n- **When:** Enemy jungler nearby, you're ahead and want to deny CS\n- **How:** Let enemy push, tank minions, keep exactly 3-4 enemy minions alive\n- **Position:** Just outside your tower range\n- **Duration:** Can hold indefinitely if done correctly\n\n**Common Mistakes:**\n☒ Having too many minions (wave will bounce back)\n☒ Freezing when you need to recall (lose wave)\n☒ Not warding when freezing (vulnerable to gank)\n\n**2️⃣ SLOW PUSH (Setup Play)**\n- **When:** Planning to dive, recalling, or roaming\n- **How:** Kill 1-2 enemy caster minions, leave melee minions\n- **Result:** Wave stacks 2-3 waves, then crashes into enemy tower\n- **Timing:** Takes ~30-40 seconds to build\n\n**Pro Tip:** Start slow push 45s before dragon spawn to ensure lane crashes before you rotate.\n\n**3️⃣ FAST PUSH (Quick Reset)**\n- **When:** Need to recall immediately, match enemy roam\n- **How:** Use all abilities to clear wave as fast as possible\n- **Goal:** Crash wave into tower, minimize CS loss\n- **Warning:** Vulnerable during push, need vision\n\n**Advanced Techniques:**\n\n**Cheater Recall:**\n1. Fast push first 3 waves\n2. Recall immediately\n3. Return with item advantage\n4. Enemy loses CS to tower\n\n**(Clip #2 — 00:45–01:02)** shows perfect cheater recall execution.\n\n**Role-Specific Tips:**\n\n**Top Lane:** Freeze is king, denies enemy more effectively\n**Mid Lane:** Fast push for roams, match enemy recalls\n**Bot Lane (ADC):** Coordinate slow push with support roams\n**Bot Lane (Support):** Help ADC freeze, poke when enemy tries to break it\n\nLet me show you pro players demonstrating these techniques:`,
-          timestamp: new Date(),
-          videoResults: [
-            {
-              id: '1',
-              title: 'Wave Management Masterclass',
-              game: 'League of Legends',
-              timestampStart: '01:12',
-              timestampEnd: '01:27',
-              thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
-              description: 'All three wave states demonstrated: Freeze → Slow Push → Fast Push with timing.',
-              confidence: 98
-            },
-            {
-              id: '2',
-              title: 'Cheater Recall Tutorial',
-              game: 'League of Legends',
-              timestampStart: '00:45',
-              timestampEnd: '01:02',
-              thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
-              description: 'Perfect cheater recall execution: Fast push 3 waves → Recall → Return with item lead.',
-              confidence: 96
-            },
-            {
-              id: '3',
-              title: 'Faker\'s Wave Control - Pro VOD',
-              game: 'League of Legends',
-              timestampStart: '02:34',
-              timestampEnd: '03:05',
-              thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
-              description: 'Faker using wave manipulation to create roam opportunities and deny enemy CS.',
-              confidence: 94
-            }
-          ],
-          followUpQuestions: [
-            "Explain cheater recall in more detail",
-            "Wave control specifically for bot lane ADC",
-            "How to break an enemy freeze?",
-            "When should I give up CS to maintain freeze?"
-          ]
-        };
-      }
-      // Diablo 2 Resurrected - Barbarian Mephisto strategy (Korean + English keyword matching)
-      else if ((lowerQuery.includes('diablo') || lowerQuery.includes('디아블로') || lowerQuery.includes('디아2') || lowerQuery.includes('diablo 2')) && 
-               (lowerQuery.includes('mephisto') || lowerQuery.includes('메피스토')) && 
-               (lowerQuery.includes('barbarian') || lowerQuery.includes('barb') || lowerQuery.includes('바바리안') || lowerQuery.includes('바바'))) {
-        aiResponse = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: `Excellent question! **Barbarian vs Mephisto in Nightmare Difficulty** requires a specific approach since Barbs lack ranged attacks. Here's the complete strategy breakdown.\n\n**(Clip #1 — 00:18–00:35)** shows the full clear sequence with optimal positioning.\n\n**Recommended Skill Build:**\n\n| Skill | Points | Priority | Purpose |\n|-------|--------|----------|----------|\n| **Whirlwind** | 20 (Max) | Primary | Main DPS skill |\n| **Battle Orders** | 20 (Max) | Essential | +HP/Mana survivability |\n| **Shout** | 10+ | High | +Defense vs Council |\n| **Find Item** | 1 | Optional | Extra loot after kill |\n| **Leap** | 1 | Movement | Skip moat safely |\n\n**Combat Sequence (Step-by-Step):**\n\n**1️⃣ Pre-Battle Preparation**\n- Cast **Battle Orders** (lasts 5 minutes)\n- Cast **Shout** for defense buff\n- Drink **Thawing Potion** (prevents freeze)\n- Equip **Crushing Blow weapon** for boss DPS\n\n**2️⃣ Clearing Council Members (Timestamp: 00:18–00:24)**\n- Use **Leap** to jump over moat to safe corner\n- Pull Council members **one at a time** (critical!)\n- Whirlwind in circles to avoid conviction aura stack\n- Keep moving to prevent hydra damage\n\n**3️⃣ Mephisto Engagement (Timestamp: 00:25–00:35)**\n- Position Mephisto near **pillar or wall**\n- Activate **Berserk** for magic damage (if available)\n- Whirlwind in **tight circles** around him\n- Watch for lightning nova — move immediately\n- Use **moat trick** if health drops below 30%\n\n**Moat Trick Technique:**\n- Stand on opposite side of moat from Mephisto\n- He cannot cross, but you can Whirlwind across\n- Lets you reset potions safely\n\n**Recommended Gear Setup:**\n\n**Weapon:**\n- **Oath Runeword** (Shael + Pul + Mal + Lum) — Budget option\n- **Grief Phase Blade** — Endgame option\n- Alternative: **Blade of Ali Baba** for Magic Find\n\n**Armor:**\n- **Smoke Runeword** (Nef + Lum) — Huge resist bonus\n- **Duress** for more damage\n\n**Helmet:**\n- **Arreat's Face** — Best in slot\n- **Guillaume's Face** (Budget) — Crushing Blow\n\n**Other:**\n- **Laying of Hands Gloves** — +350% demon damage!\n- **Gore Rider Boots** — Crushing Blow + speed\n- **Raven Frost Ring** — Cannot be Frozen\n- **Resistances:** Need 75% all resists for Nightmare (check with -Resist check)\n\n**Mercenary Recommendation:**\n\n**Best Choice: Act 2 Nightmare Defensive Merc**\n- Provides **Holy Freeze aura** (slows enemies)\n- Equip with **Insight Runeword** for mana regen\n- Armor: **Treachery** or **Duriel's Shell**\n- Helmet: **Tal Rasha's Mask** with life leech\n\n**Common Mistakes to Avoid:**\n\n☒ Fighting all Council members at once (you'll die)\n☒ Not using Thawing Potion (frozen = death)\n☒ Standing still while Whirlwinding (hydra hits)\n☒ Forgetting to recast Battle Orders after death\n☒ Using Berserk without Cannot be Frozen (dangerous)\n\n**Advanced Tips:**\n\n✔ Keep **antidote potions** for poison clouds\n✔ Use **Prevent Monster Heal** if fight takes too long\n✔ If dying often, farm **Nightmare Baal** for better gear first\n✔ Swap to Magic Find gear BEFORE final hit for better drops\n\n**Efficiency Route:**\n1. Waypoint → Durance Level 3\n2. Clear Council (30 seconds)\n3. Kill Mephisto (15-20 seconds)\n4. Town portal → Sell loot\n5. Repeat (Full run: ~2 minutes)\n\nLet me show you professional speedrun demonstrations:`,
-          timestamp: new Date(),
-          videoResults: [
-            {
-              id: '1',
-              title: 'Barbarian Mephisto Full Clear - Nightmare',
-              game: 'Diablo 2 Resurrected',
-              timestampStart: '00:18',
-              timestampEnd: '00:35',
-              thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
-              description: 'Complete sequence: Council pull strategy + Moat trick + Whirlwind positioning.',
-              confidence: 97
-            },
-            {
-              id: '2',
-              title: 'Budget Gear Barbarian - Nightmare Viable',
-              game: 'Diablo 2 Resurrected',
-              timestampStart: '01:12',
-              timestampEnd: '01:28',
-              thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
-              description: 'Gear showcase: Oath weapon + Smoke armor + Guillaume face. Total cost: ~Ist rune.',
-              confidence: 95
-            },
-            {
-              id: '3',
-              title: 'Mephisto Speedrun - 45 Second Clear',
-              game: 'Diablo 2 Resurrected',
-              timestampStart: '02:05',
-              timestampEnd: '02:34',
-              thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
-              description: 'Optimized route with perfect Council skip and moat trick execution.',
-              confidence: 93
-            }
-          ],
-          followUpQuestions: [
-            "What's the best farming route for Barbarian in Nightmare?",
-            "How to transition to Hell difficulty with Barbarian?",
-            "Best runewords for budget Barbarian build?",
-            "Barbarian vs Baal strategy for Nightmare?"
-          ]
-        };
-      }
-      // Generic detailed response for other queries
-      else {
-        aiResponse = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: `Great question! Let me break down **${messageText}** for you with a detailed analysis.\n\n**Strategic Overview:**\n\nThis technique requires understanding the core mechanics, timing, and situational application. I've analyzed multiple high-level player VODs and found the exact moments where this is executed perfectly.\n\n**Key Steps to Master:**\n\n1️⃣ **Understanding the Fundamentals**\n- Learn the base mechanic and prerequisites\n- Identify the optimal conditions for execution\n- Practice the timing in low-pressure environments\n\n2️⃣ **Execution Breakdown**\n- Start with proper positioning (Clip #1 — 00:14–00:21)\n- Execute the core technique with precise timing\n- Follow through with supporting actions\n\n3️⃣ **Advanced Applications**\n- Situational adaptations for different scenarios\n- Combining with other techniques for maximum effectiveness\n- Reading opponent reactions and adjusting\n\n**Common Mistakes to Avoid:**\n☒ Attempting the technique without proper setup\n☒ Poor timing that telegraphs your intention\n☒ Not practicing in controlled environments first\n☒ Ignoring matchup-specific adjustments\n\n**Pro Tips for Improvement:**\n✔ Record your gameplay to analyze execution\n✔ Watch top-tier players in similar situations\n✔ Practice specific scenarios in custom games\n✔ Focus on consistency before attempting in ranked\n\n**Recommended Setup/Build:**\n- Primary tools/abilities needed for optimal execution\n- Secondary options that complement the strategy\n- Situational adjustments based on game state\n\nLet me show you professional demonstrations of this technique:`,
-          timestamp: new Date(),
-          videoResults: [
-            {
-              id: '1',
-              title: 'Professional Tutorial - Technique Breakdown',
-              game: 'Valorant',
-              timestampStart: '00:14',
-              timestampEnd: '00:26',
-              thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
-              description: 'Step-by-step execution with clear timing markers and positioning requirements.',
-              confidence: 96
-            },
-            {
-              id: '2',
-              title: 'Competitive Application - Tournament VOD',
-              game: 'Valorant',
-              timestampStart: '02:34',
-              timestampEnd: '02:48',
-              thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
-              description: 'High-pressure execution in competitive setting, showing decision-making process.',
-              confidence: 92
-            },
-            {
-              id: '3',
-              title: 'Advanced Guide - Multiple Scenarios',
-              game: 'Valorant',
-              timestampStart: '05:12',
-              timestampEnd: '05:30',
-              thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
-              description: 'Situational variations and adaptations for different matchups and maps.',
-              confidence: 89
-            }
-          ],
-          followUpQuestions: [
-            "Can you show a slow-motion breakdown?",
-            "What are the best practice drills for this?",
-            "How do pro players adapt this in different situations?",
-            "Common counters and how to deal with them?"
-          ]
-        };
-      }
-
+      const aiResponse = getHardcodedResponse(messageText);
       setMessages(prev => [...prev, aiResponse]);
       setIsTyping(false);
-    }, 2000);
+    }, 1500);
+  };
+
+  // Rule-based chatbot - hardcoded responses
+  const getHardcodedResponse = (query: string): Message => {
+    const lowerQuery = query.toLowerCase();
+
+    // Jett super jump
+    if ((lowerQuery.includes('jett') || lowerQuery.includes('제트')) && 
+        (lowerQuery.includes('jump') || lowerQuery.includes('점프') || lowerQuery.includes('timing'))) {
+      return {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `🪂 **Jett Super Jump Guide** (Clip 00:14–00:21)\n\nThe Jett super jump is a momentum-based technique that combines Dash + Jump buffering:\n\n**Step-by-Step Execution:**\n1️⃣ Cast **Tailwind (Dash)** toward wall or desired direction\n2️⃣ **Within 0.15s**, press Jump + W together (timing is critical!)\n3️⃣ **Slightly tilt camera downward** for maximum lift\n4️⃣ **Glide by holding Space** to maintain momentum\n\n**Common Mistakes to Avoid:**\n☒ Jumping before Dash — ruins momentum\n☒ Holding W too long — reduces height gain\n☒ Camera facing forward — no vertical lift\n☒ Not practicing the 0.15s timing window\n\n**Pro Tips:**\n✔ Practice on Haven A site boxes first\n✔ Bind jump to scroll wheel for faster input\n✔ Combine with updraft for triple-height jumps\n✔ Works best at 60+ FPS for consistent timing`,
+        timestamp: new Date(),
+        videoResults: [
+          {
+            id: '1',
+            title: 'TenZ Jett Super Jump Tutorial',
+            game: 'Valorant',
+            timestampStart: '00:14',
+            timestampEnd: '00:21',
+            thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+            description: 'Perfect execution: Dash → Jump + W within 0.15s → Camera tilt downward.',
+            confidence: 98
+          },
+          {
+            id: '2',
+            title: 'Super Jump on Every Map',
+            game: 'Valorant',
+            timestampStart: '02:34',
+            timestampEnd: '02:48',
+            thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+            description: 'Map-specific spots: Haven A, Bind Showers, Ascent Mid with slow-motion.',
+            confidence: 96
+          }
+        ],
+        followUpQuestions: [
+          "Show me on Haven A site specifically",
+          "Can you show a slow-motion version?",
+          "Is this allowed in ranked/competitive?"
+        ]
+      };
+    }
+
+    // Elden Ring parry timing
+    if ((lowerQuery.includes('elden') || lowerQuery.includes('엘든')) && 
+        (lowerQuery.includes('parry') || lowerQuery.includes('패링') || lowerQuery.includes('timing'))) {
+      return {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `⚔️ **Elden Ring Parry Timing Guide** (Clip 00:21–00:26)\n\nParry timing is all about reading enemy animation frames. Here are the windows:\n\n**Enemy Parry Windows:**\n• **Light enemies (Godrick Soldier)**: 0.33s after swing start — Easy\n• **Knights (Crucible Knight)**: 0.26s after swing — Medium\n• **Assassins (Black Knife)**: 0.18s after swing — Hard\n• **Tree Sentinel**: 0.35s after swing — Easy (huge wind-up)\n\n**When to Parry:**\n1️⃣ Watch for **arm extension** (not weapon swing start)\n2️⃣ Press parry **0.1s before impact**\n3️⃣ Listen for audio cue (weapon whoosh sound)\n\n**Best Parry Tools:**\n🔥 **Buckler Shield** — Adds +18% parry frames (easiest for beginners)\n🔥 **Parry Dagger** — +15% frames, faster animation\n🔥 **Golden Parry** (Ash of War) — +30% range\n\n**Pro Tips:**\n✔ Disable motion blur in settings for clearer animation reading\n✔ Practice on Limgrave soldiers first (most forgiving)\n✔ Use target lock to maintain camera stability\n✔ Two-handed weapons CANNOT be parried\n\n**Common Mistakes:**\n☒ Parrying too early (react to arm extension, not wind-up)\n☒ Using medium shields (slower parry frames)\n☒ Trying to parry jump attacks (most are unparryable)`,
+        timestamp: new Date(),
+        videoResults: [
+          {
+            id: '1',
+            title: 'Parry Frame Analysis - All Enemies',
+            game: 'Elden Ring',
+            timestampStart: '00:21',
+            timestampEnd: '00:26',
+            thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+            description: 'Frame-by-frame breakdown: Godrick Soldier, Crucible Knight, Tree Sentinel.',
+            confidence: 97
+          },
+          {
+            id: '2',
+            title: 'Buckler vs Golden Parry Comparison',
+            game: 'Elden Ring',
+            timestampStart: '01:45',
+            timestampEnd: '02:03',
+            thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+            description: 'Side-by-side comparison showing extended parry windows with different tools.',
+            confidence: 95
+          }
+        ],
+        followUpQuestions: [
+          "Which bosses cannot be parried at all?",
+          "Can you show parry training drills?",
+          "Best parry build for PvP?"
+        ]
+      };
+    }
+
+    // CS2 smoke lineup
+    if ((lowerQuery.includes('cs2') || lowerQuery.includes('counter') || lowerQuery.includes('카스')) && 
+        (lowerQuery.includes('smoke') || lowerQuery.includes('mirage') || lowerQuery.includes('lineup'))) {
+      return {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `💣 **Mirage A Site Smoke Lineup** (T Ramp)\n\nThese three smokes give you full site control and cut off CT rotations:\n\n**Critical Smokes:**\n\n| Target | Timestamp | Throw Type | Position |\n|--------|-----------|------------|----------|\n| **CT Spawn** | 00:12–00:18 | Jump Throw | T Stairs (2nd step) |\n| **Jungle** | 00:21–00:27 | Stand Throw | Top Mid connector |\n| **Stairs** | 00:28–00:35 | Crouch Throw | Bottom Ramp |\n\n**Execution Guide:**\n\n**1️⃣ CT Smoke** (Most Critical)\n• Position: Stand on **second stair from top** at T Stairs\n• Aim: Top-left corner of Palace window\n• Throw: **Jump Throw bind** (essential for consistency)\n• ⚠️ Throw this **LAST** to avoid early AWP peek\n\n**2️⃣ Jungle Smoke**\n• Position: Top Mid connector near wall\n• Aim: Lamp post above Jungle entrance\n• Throw: **Standing throw** with left-click\n• Timing: Throw FIRST to block rotations\n\n**3️⃣ Stairs Smoke**\n• Position: Bottom of Ramp\n• Aim: Top-right corner of Balcony ledge\n• Throw: **Crouch + Left-click**\n\n**Pro Tips:**\n✔ Coordinate with **Ramp Flash + Balcony Molotov**\n✔ Have teammate ready to trade if CT pushes smoke\n\n**Common Mistakes:**\n☒ Throwing CT smoke too early\n☒ Not using jump throw bind (inconsistent)\n☒ Rushing before smokes bloom (1.5s delay)`,
+        timestamp: new Date(),
+        videoResults: [
+          {
+            id: '1',
+            title: 'Mirage A Site - CT Smoke Lineup',
+            game: 'CS2',
+            timestampStart: '00:12',
+            timestampEnd: '00:18',
+            thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+            description: 'CT Spawn smoke: Jump throw from T Stairs, aim at Palace window corner.',
+            confidence: 99
+          },
+          {
+            id: '2',
+            title: 'Complete A Execute Strategy',
+            game: 'CS2',
+            timestampStart: '00:21',
+            timestampEnd: '00:35',
+            thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+            description: 'Full execute: Jungle + Stairs + CT smoke with flash/molotov timing.',
+            confidence: 97
+          }
+        ],
+        followUpQuestions: [
+          "Show me Molotov spots for A site",
+          "How to counter this execute as CT?",
+          "Jump throw bind setup guide?"
+        ]
+      };
+    }
+
+    // LoL wave management
+    if ((lowerQuery.includes('league') || lowerQuery.includes('lol') || lowerQuery.includes('롤')) && 
+        (lowerQuery.includes('wave') || lowerQuery.includes('laning') || lowerQuery.includes('basic'))) {
+      return {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `🌊 **League of Legends Wave Management Guide**\n\nWave control is one of the most important fundamentals. Here are the three core strategies:\n\n**Wave Control Strategies:**\n\n| Strategy | Use Case | Method | Risk |\n|----------|----------|--------|------|\n| **Freeze** | Avoid ganks, deny CS | Keep 3-4 minions alive near tower | Low |\n| **Slow Push** | Setup dive, recall | Stack 2+ waves | Medium |\n| **Fast Push** | Quick recall, roam | Clear wave ASAP | High |\n\n**(Clip 01:12–01:27)** shows all three techniques in a real game.\n\n**1️⃣ FREEZE (Defensive Control)**\n• **When:** Enemy jungler nearby, you're ahead\n• **How:** Let enemy push, tank minions, keep exactly 3-4 enemy minions alive\n• **Position:** Just outside your tower range\n• **Duration:** Can hold indefinitely if done correctly\n\n**2️⃣ SLOW PUSH (Setup Play)**\n• **When:** Planning to dive, recall, or roam\n• **How:** Kill 1-2 caster minions, leave melee minions\n• **Result:** Wave stacks 2-3 waves, crashes into enemy tower\n• **Timing:** Takes ~30-40 seconds to build\n• 💡 **Pro Tip:** Start slow push 45s before dragon spawn\n\n**3️⃣ FAST PUSH (Quick Reset)**\n• **When:** Need to recall immediately or match roam\n• **How:** Use all abilities to clear wave fast\n• **Goal:** Crash wave, minimize CS loss\n\n**Advanced: Cheater Recall** (Clip 00:45–01:02)\n1. Fast push first 3 waves\n2. Recall immediately\n3. Return with item advantage\n4. Enemy loses CS to tower\n\n**Common Mistakes:**\n☒ Too many minions when freezing (wave bounces)\n☒ Freezing when you need to recall\n☒ Not warding while freezing (vulnerable)`,
+        timestamp: new Date(),
+        videoResults: [
+          {
+            id: '1',
+            title: 'Wave Management Masterclass',
+            game: 'League of Legends',
+            timestampStart: '01:12',
+            timestampEnd: '01:27',
+            thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+            description: 'All three wave states: Freeze → Slow Push → Fast Push with timing.',
+            confidence: 98
+          },
+          {
+            id: '2',
+            title: 'Cheater Recall Tutorial',
+            game: 'League of Legends',
+            timestampStart: '00:45',
+            timestampEnd: '01:02',
+            thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+            description: 'Perfect cheater recall: Fast push 3 waves → Recall → Item advantage.',
+            confidence: 96
+          }
+        ],
+        followUpQuestions: [
+          "Explain cheater recall in more detail",
+          "Wave control specifically for bot lane ADC",
+          "How to break an enemy freeze?"
+        ]
+      };
+    }
+
+    // Diablo 4 Sorcerer leveling
+    if ((lowerQuery.includes('diablo 4') || lowerQuery.includes('d4')) && 
+        (lowerQuery.includes('sorcerer') || lowerQuery.includes('sorc') || lowerQuery.includes('leveling'))) {
+      return {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `🔥 **Diablo 4 Sorcerer XP Route** (Nightmare Difficulty)\n\nFastest leveling route for Sorcerer in Nightmare tier:\n\n**Best XP Farm Locations:**\n\n| Location | XP/Hour | Difficulty |\n|----------|---------|------------|\n| **Champion's Demise** | 7.2M | Medium |\n| Blind Burrows | 6.8M | Easy |\n| Guulrahn Slums | 5.9M | Hard |\n\n**Recommended Skill Rotation:**\n1️⃣ **Teleport** → Position into pack\n2️⃣ **Flame Shield** → Auto-trigger for protection\n3️⃣ **Chain Lightning** spam → Main DPS\n\n**Required Setup:**\n🔥 **Must equip:** Flame Shield Enchantment (auto-trigger)\n🔥 **Primary stat:** Intelligence + Critical Strike Chance\n🔥 **Defense:** At least 40% damage reduction\n\n**Gear Recommendations:**\n• **Weapon:** Staff with +Chain Lightning damage\n• **Armor:** Flame Shield cooldown reduction\n• **Amulet:** +Intelligence, +Critical Strike\n• **Rings:** +Damage to Close/Distant enemies\n\n**Route Optimization:**\n1. Teleport to Champion's Demise\n2. Clear entire dungeon (2-3 minutes)\n3. Reset and repeat\n4. Expected: 7.2M XP/hour\n\n**Pro Tips:**\n✔ Use Flame Shield Enchantment for auto-protection\n✔ Stack cooldown reduction for faster Teleport\n✔ Prioritize density over elite kills for XP\n✔ Group up enemies before Chain Lightning`,
+        timestamp: new Date(),
+        videoResults: [
+          {
+            id: '1',
+            title: 'Sorcerer 7.2M XP/Hour Route',
+            game: 'Diablo 4',
+            timestampStart: '00:15',
+            timestampEnd: '00:32',
+            thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+            description: 'Champion\'s Demise full clear with optimal skill rotation.',
+            confidence: 96
+          },
+          {
+            id: '2',
+            title: 'Budget Gear Setup for Leveling',
+            game: 'Diablo 4',
+            timestampStart: '01:20',
+            timestampEnd: '01:45',
+            thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+            description: 'Affordable gear setup that works for Nightmare tier farming.',
+            confidence: 93
+          }
+        ],
+        followUpQuestions: [
+          "Hell difficulty version?",
+          "Best budget gear setup?",
+          "How to optimize for Torment tier?"
+        ]
+      };
+    }
+
+    // Diablo 2 Resurrected - Barbarian Mephisto (Korean + English)
+    if ((lowerQuery.includes('diablo 2') || lowerQuery.includes('d2') || lowerQuery.includes('디아블로') || lowerQuery.includes('디아2')) && 
+        (lowerQuery.includes('mephisto') || lowerQuery.includes('메피스토')) && 
+        (lowerQuery.includes('barb') || lowerQuery.includes('바바'))) {
+      return {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `⚔️ **Diablo 2 Resurrected: Barbarian vs Mephisto** (Nightmare)\n\n**(Clip 00:18–00:35)** Full clear sequence with optimal positioning\n\n**Recommended Skill Build:**\n\n| Skill | Points | Purpose |\n|-------|--------|----------|\n| **Whirlwind** | 20 (Max) | Main DPS |\n| **Battle Orders** | 20 (Max) | +HP/Mana |\n| **Shout** | 10+ | +Defense |\n| **Leap** | 1 | Skip moat |\n\n**Combat Sequence:**\n\n**1️⃣ Pre-Battle Preparation**\n• Cast **Battle Orders** (lasts 5 min)\n• Cast **Shout** for defense\n• Drink **Thawing Potion** (prevents freeze)\n• Equip **Crushing Blow weapon**\n\n**2️⃣ Council Members** (00:18–00:24)\n• Use **Leap** to jump over moat\n• Pull Council **one at a time** (critical!)\n• Whirlwind in circles\n• Keep moving to avoid hydra\n\n**3️⃣ Mephisto Fight** (00:25–00:35)\n• Position near **pillar or wall**\n• Whirlwind in **tight circles**\n• Watch for lightning nova → move!\n• Use **moat trick** if HP < 30%\n\n**Moat Trick:**\n• Stand opposite side of moat from Mephisto\n• He can't cross, but you can WW across\n• Resets potions safely\n\n**Gear Setup:**\n\n**Weapon:**\n🗡️ **Oath Runeword** (Budget) — Shael + Pul + Mal + Lum\n🗡️ **Grief Phase Blade** (Endgame)\n\n**Armor:**\n🛡️ **Smoke Runeword** — Huge resist bonus\n🛡️ **Duress** — More damage\n\n**Other:**\n• **Laying of Hands** Gloves → +350% demon damage!\n• **Gore Rider** Boots → Crushing Blow\n• **Raven Frost** Ring → Cannot be Frozen\n• **Arreat's Face** Helmet (or Guillaume's)\n\n**Mercenary:**\n🧙 **Act 2 Nightmare Defensive**\n• Provides Holy Freeze aura\n• Equip: **Insight** (mana regen)\n• Armor: **Treachery**\n• Helmet: **Tal Rasha's Mask**\n\n**Common Mistakes:**\n☒ Fighting all Council at once\n☒ Not using Thawing Potion (frozen = death)\n☒ Standing still while WWing\n☒ Forgetting Battle Orders after death\n\n**Farm Route:**\n1. Waypoint → Durance 3\n2. Clear Council (30s)\n3. Kill Mephisto (20s)\n4. Town portal → Sell\n5. Repeat (~2 min/run)`,
+        timestamp: new Date(),
+        videoResults: [
+          {
+            id: '1',
+            title: 'Barbarian Mephisto Full Clear',
+            game: 'Diablo 2 Resurrected',
+            timestampStart: '00:18',
+            timestampEnd: '00:35',
+            thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+            description: 'Council pull strategy + Moat trick + Whirlwind positioning.',
+            confidence: 97
+          },
+          {
+            id: '2',
+            title: 'Budget Gear Barbarian',
+            game: 'Diablo 2 Resurrected',
+            timestampStart: '01:12',
+            timestampEnd: '01:28',
+            thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+            description: 'Oath weapon + Smoke armor setup. Total cost: ~Ist rune.',
+            confidence: 95
+          }
+        ],
+        followUpQuestions: [
+          "Best farming route for Barbarian in Nightmare?",
+          "How to transition to Hell difficulty?",
+          "Best runewords for budget build?"
+        ]
+      };
+    }
+
+    // Default fallback - no match
+    return {
+      id: (Date.now() + 1).toString(),
+      role: 'assistant',
+      content: `I don't have information for that yet.\n\nI can help you with:\n• Jett super jump timing (Valorant)\n• Elden Ring parry timing\n• CS2 smoke lineups (Mirage)\n• League of Legends wave management\n• Diablo 4 Sorcerer leveling routes\n• Diablo 2 Barbarian strategies\n\nTry asking one of the suggested questions below!`,
+      timestamp: new Date(),
+      followUpQuestions: [
+        "Jett super jump timing",
+        "Elden Ring parry timing",
+        "CS2 Mirage smoke lineup",
+        "LoL laning basics"
+      ]
+    };
   };
 
   const handleCopyTimestamp = (start: string, end: string) => {
@@ -384,7 +340,7 @@ export function AISearchPage() {
               </div>
               <div>
                 <h1 className="text-xl text-[#00FFC6]">AI Gaming Assistant</h1>
-                <p className="text-xs text-gray-400">Powered by multimodal AI</p>
+                <p className="text-xs text-gray-400">Rule-based gaming knowledge chatbot</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -413,7 +369,7 @@ export function AISearchPage() {
                     <Sparkles className="w-8 h-8 text-white" />
                   </div>
                   <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
-                    I'm your AI gaming assistant. Ask me anything about game mechanics, strategies, or timestamp-based tutorials.
+                    I'm your AI gaming assistant. Ask me about game mechanics, strategies, or timestamp-based tutorials.
                   </p>
                 </div>
 
@@ -684,7 +640,7 @@ export function AISearchPage() {
 
               {/* Info Text */}
               <p className="text-xs text-gray-500 mt-3 text-center">
-                AI can make mistakes. Verify critical techniques with experts. Each message costs 10 credits.
+                Rule-based responses. Verify critical techniques with experts. Each message costs 10 credits.
               </p>
             </>
           )}
